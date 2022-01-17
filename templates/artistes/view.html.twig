@@ -6,10 +6,10 @@
 <main class="main-artist">
     <div class="head-art">
         <div class="cover-art">
-            <img src="{{asset('img/artists/peggy-gou.jpg')}}" alt="album">
+            <img src="{{asset('uploads/artists/')}}{{artist.fileA}}" alt="album">
         </div>
         <div class="info-art">
-            <h2>Peggy Gou</h2>
+            <h2>{{artist.name}}</h2>
             <span class="tags">#techno</span>
         </div>
     </div>
@@ -18,60 +18,28 @@
             Bibliothèque musicale
         </h1>
         <div class="musics-list">
+            <audio src="" id="audio"></audio>
+            {%for music in artist.musics%}
             <div class="music-item">
                 <div class="music-cover music-cover-list">
-                    <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
+                    <img src="{{asset('uploads/covers/')}}{{music.album.file}}" alt="cover">
                 </div>
                 <div class="music-info">
                     <div class="ctn-msc-info">
-                        <span class="music-title title-item">subzero</span>
-                        <span class="music-artist artist-item">Ben Klock</span>
+                        <span class="music-title title-item">{{music.titleM}}</span>
+                        <span class="music-artist artist-item">{{artist.name}}</span>
                     </div>
 
                 </div>
-                <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
+                <a class="album-name" href="{{ path('view_album', { id: music.album.id }) }}">{{music.album.title}}</a>
+                <span class="src-audio">{{asset('uploads/audios/')}}{{{music.fileM}}}</span>
                 <div class="more-info">
                     <span class="music-rating">4.5</span>
                     <span class="music-duration">3:50</span>
                 </div>
-                <audio src="" id="audio"></audio>
-            </div>
-            <div class="music-item">
-                <div class="music-cover">
-                    <img src="{{asset('img/covers/smack-that.jpg')}}" alt="smack-that-cover">
-                </div>
-                <div class="music-info">
-                    <div class="ctn-msc-info">
-                        <span class="music-title title-item">smack-that</span>
-                        <span class="music-artist artist-item">akon</span>
-                    </div>
 
-                </div>
-                <span class="album-name">blum</span>
-                <div class="more-info">
-                    <span class="music-rating">4.5</span>
-                    <span class="music-duration">3:50</span>
-                </div>
-                <audio src="" id="audio"></audio>
             </div>
-            <div class="music-item">
-                <div class="music-cover">
-                    <img src="{{asset('img/covers/deprogramming.jpg')}}" alt="deprogramming-cover">
-                </div>
-                <div class="music-info">
-                    <div class="ctn-msc-info">
-                        <span class="music-title title-item">deprogramming</span>
-                        <span class="music-artist artist-item">Adam X</span>
-                    </div>
-
-                </div>
-                <span class="album-name">FFFFF</span>
-                <div class="more-info">
-                    <span class="music-rating">4.5</span>
-                    <span class="music-duration">3:50</span>
-                </div>
-                <audio src="" id="audio"></audio>
-            </div>
+            {%endfor%}
 
         </div>
     </div>
@@ -79,95 +47,16 @@
         <h1 class="page-title pge-album-arts">
             Albums
         </h1>
+        {%for album in artist.albums%}
         <div class="album-item">
-
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
+            <a class="cover-album" href="{{ path('view_album', { id: album.id }) }}"><img
+                    src="{{asset('uploads/covers/')}}{{album.file}}" alt="cover album"></a>
             <div class="album-info">
-                <a class="album-title" href="https://127.0.0.1:8000/album/7">Crush</a>
-                <span class="artist-title">Floating Point</span>
+                <a class="album-title" href="{{ path('view_album', { id: album.id }) }}">{{album.title}}</a>
+                <span class="artist-title">{{album.artist}}</span>
             </div>
         </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
-        <div class="album-item">
-            <a class="cover-album" href="https://127.0.0.1:8000/album/7"><img src="{{asset('img/covers/subzero.jpg')}}"
-                    alt="cover album"></a>
-            <div class="album-info">
-                <span class="album-title">Crush</span>
-                <span class="artist-title">Floating Point</span>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </main>
 {{ include('/_player.html.twig') }}

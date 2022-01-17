@@ -67,10 +67,11 @@ const controlPanel = document.querySelector('.ctrl-panel'),
 
 //objet Musics qui permet de maper les info de chaque musique 
 class Musics {
-    constructor(title, artist, album) {
+    constructor(title, artist, album, file) {
         this.title = title;
         this.artist = artist;
         this.album = album;
+        this.file = file;
     }
 }
 
@@ -79,7 +80,8 @@ let musicsCalc = [],
 musicItems.forEach((item) => {
     musicsCalc.push(item.parentElement.querySelector('.title-item').textContent)
     let musicsTotal = musicsCalc.length - 1;
-    musics.push(new Musics(item.parentElement.querySelector('.title-item').textContent, item.parentElement.querySelector('.artist-item').textContent, "outsut"))
+    musics.push(new Musics(item.parentElement.querySelector('.title-item').textContent,
+        item.parentElement.querySelector('.artist-item').textContent, item.parentElement.querySelector('.music-cover img').src, item.parentElement.querySelector('.src-audio').textContent))
 });
 
 let indexOfMusic = musics.length - 1;
@@ -91,8 +93,8 @@ loadSong(musics[indexOfMusic]);
 function loadSong(song) {
     titlePlayed.innerText = song.title
     artistPlayed.innerText = song.artist
-    audio.src = `http://127.0.0.1:8000/musics/${song.title}.mp3`;
-    coverPlayed.src = `http://127.0.0.1:8000/img/covers/${song.title}.jpg`;
+    audio.src = song.file;
+    coverPlayed.src = song.album;
 }
 
 // function changement du bouton play en pause et lancement de la musique

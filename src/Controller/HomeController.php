@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/")
+     /**
+     * @Route("/", name="index")
      */
-    public function index(Request $request): Response
+    public function index(): Response
     {
         return $this->redirectToRoute('home');
     }

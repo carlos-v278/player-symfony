@@ -6,52 +6,51 @@ use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
+#[ORM\Entity(repositoryClass: AlbumRepository::class)]
 /**
- * @ORM\Entity(repositoryClass=AlbumRepository::class)
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
+
 class Album
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $title;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: 'date')]
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Artiste::class, inversedBy="album")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $artiste;
+    #[ORM\ManyToOne(targetEntity: Artist::class, inversedBy: 'albums')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $artist;
+
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: Music::class, orphanRemoval: true)]
+    private $musics;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity=Musique::class, mappedBy="album")
+     * @Vich\UploadableField(mapping="album_images", fileNameProperty="file")
+     * @var File
      */
-    private $musique;
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setDateValue(): void
-    {
-        $this->date = new \DateTimeImmutable();
-    }
+    private $imageFile;
 
     public function __construct()
     {
-        $this->musique = new ArrayCollection();
+        $this->musics = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,18 +58,17 @@ class Album
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getTitle(): ?string
     {
-        return $this->nom;
+        return $this->title;
     }
 
-    public function setNom(string $nom): self
+    public function setTitle(string $title): self
     {
-        $this->nom = $nom;
+        $this->title = $title;
 
         return $this;
     }
-
 
     public function getDate(): ?\DateTimeInterface
     {
@@ -84,48 +82,90 @@ class Album
         return $this;
     }
 
-    public function getArtiste(): ?Artiste
+    public function getArtist(): ?Artist
     {
-        return $this->artiste;
+        return $this->artist;
     }
 
-    public function setArtiste(?Artiste $artiste): self
+    public function setArtist(?Artist $artist): self
     {
-        $this->artiste = $artiste;
+        $this->artist = $artist;
 
         return $this;
     }
 
     /**
-     * @return Collection|Musique[]
+     * @return Collection|Music[]
      */
-    public function getMusique(): Collection
+    public function getMusics(): Collection
     {
-        return $this->musique;
+        return $this->musics;
     }
 
-    public function addMusique(Musique $musique): self
+    public function addMusic(Music $music): self
     {
-        if (!$this->musique->contains($musique)) {
-            $this->musique[] = $musique;
-            $musique->setAlbum($this);
+        if (!$this->musics->contains($music)) {
+            $this->musics[] = $music;
+            $music->setAlbum($this);
         }
 
         return $this;
     }
 
-    public function removeMusique(Musique $musique): self
+    public function removeMusic(Music $music): self
     {
-        if ($this->musique->removeElement($musique)) {
+        if ($this->musics->removeElement($music)) {
             // set the owning side to null (unless already changed)
-            if ($musique->getAlbum() === $this) {
-                $musique->setAlbum(null);
+            if ($music->getAlbum() === $this) {
+                $music->setAlbum(null);
             }
         }
 
         return $this;
     }
     public function __toString(){
-        return $this->nom;
+        return $this->title;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile(string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

@@ -5,62 +5,66 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
- * @ORM\HasLifecycleCallbacks()
- */
+#[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $contenue;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $title;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    private $content;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $author;
+
+    #[ORM\Column(type: 'date')]
     private $date;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $auteur;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /*  GESTION DE L'AUTO INCREMENT DE LA DATE   */
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setDateValue(): void
-    {
-        $this->date = new \DateTimeImmutable();
-    }
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContenue(): ?string
+    public function getTitle(): ?string
     {
-        return $this->contenue;
+        return $this->title;
     }
 
-    public function setContenue(string $contenue): self
+    public function setTitle(string $title): self
     {
-        $this->contenue = $contenue;
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
@@ -77,26 +81,14 @@ class Article
         return $this;
     }
 
-    public function getAuteur(): ?string
+    public function getSlug(): ?string
     {
-        return $this->auteur;
+        return $this->slug;
     }
 
-    public function setAuteur(string $auteur): self
+    public function setSlug(string $slug): self
     {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
+        $this->slug = $slug;
 
         return $this;
     }

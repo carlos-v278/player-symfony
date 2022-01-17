@@ -14,85 +14,15 @@
         <h1 class="page-title pge-album-arts">
             Artists
         </h1>
+        {%for artist in artists%}
         <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
+            <a href="{{ path('view_artist', { id: artist.id }) }}">
+                <div class="artist-img"><img src="{{asset('uploads/artists/')}}{{artist.fileA}}" alt="imga-artist">
+                </div>
+                <span class="artist-name">{{artist.name}}</span>
             </a>
         </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-        <div class="artist-it">
-            <a href="https://127.0.0.1:8000/artiste/7">
-                <div class="artist-img"><img src="{{asset('img/artists/peggy-gou.jpg')}}" alt=""></div>
-                <span class="artist-name">Peggy-Gou</span>
-            </a>
-        </div>
-
+        {% endfor %}
     </div>
 </main>
 

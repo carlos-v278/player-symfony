@@ -10,118 +10,33 @@
         </label>
     </div>
     <h1 class="page-title">
-        Bibliothèque musicale
+        Musiques
     </h1>
     <div class="musics-list">
+        <audio src="" id="audio"></audio>
+        {% for music in musics %}
         <div class="music-item">
             <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
+                <img src="{{asset('uploads/covers/')}}{{music.album.file}}" alt="subzero-cover">
             </div>
             <div class="music-info">
                 <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
+                    <span class="music-title title-item">{{music.titleM}}</span>
+                    <a class="music-artist artist-item"
+                        href="{{ path('view_artist', { id: music.artist.id }) }}">{{music.artist.name}}</a>
+                    <span class="src-audio">{{asset('uploads/audios/')}}{{music.fileM}}</span>
                 </div>
 
             </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
+            <a class="album-name"
+                href="{{ path('view_album', {'slug': music.album.slug, id: music.album.id }) }}">{{music.album.title}}</a>
             <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
+                <span class="music-rating"></span>
+                <span class="music-duration"></span>
             </div>
-            <audio src="" id="audio"></audio>
-        </div>
-        <div class="music-item">
-            <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
-            </div>
-            <div class="music-info">
-                <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
-                </div>
 
-            </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
-            <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
-            </div>
-            <audio src="" id="audio"></audio>
         </div>
-        <div class="music-item">
-            <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
-            </div>
-            <div class="music-info">
-                <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
-                </div>
-
-            </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
-            <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
-            </div>
-            <audio src="" id="audio"></audio>
-        </div>
-        <div class="music-item">
-            <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
-            </div>
-            <div class="music-info">
-                <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
-                </div>
-
-            </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
-            <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
-            </div>
-            <audio src="" id="audio"></audio>
-        </div>
-        <div class="music-item">
-            <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
-            </div>
-            <div class="music-info">
-                <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
-                </div>
-
-            </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
-            <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
-            </div>
-            <audio src="" id="audio"></audio>
-        </div>
-        <div class="music-item">
-            <div class="music-cover music-cover-list">
-                <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
-            </div>
-            <div class="music-info">
-                <div class="ctn-msc-info">
-                    <span class="music-title title-item">subzero</span>
-                    <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
-                </div>
-
-            </div>
-            <a class="album-name" href="https://127.0.0.1:8000/album/7">Crush</a>
-            <div class="more-info">
-                <span class="music-rating">4.5</span>
-                <span class="music-duration">3:50</span>
-            </div>
-            <audio src="" id="audio"></audio>
-        </div>
-
+        {% endfor %}
     </div>
 </main>
 {{ include('/_player.html.twig') }}

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Controller\Admin;
-
-use App\Entity\Album;
 use App\Entity\Article;
-use App\Entity\Artiste;
-use App\Entity\Musique;
+use App\Entity\Artist;
+use App\Entity\Music;
+use App\Entity\Album;
+use EasyCorp\Bundle\EasyAd;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -14,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    /**
-     * @Route("/admin", name="admin")
-     */
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
@@ -25,7 +23,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Symfony');
+            ->setTitle('Symfony Project');
     }
 
     public function configureMenuItems(): iterable
@@ -33,8 +31,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Album', 'fas fa-list', Album::class);
         yield MenuItem::linkToCrud('Article', 'fas fa-list', Article::class);
-        yield MenuItem::linkToCrud('Artiste', 'fas fa-list', Artiste::class);
-        yield MenuItem::linkToCrud('Musique', 'fas fa-list', Musique::class);
-
+        yield MenuItem::linkToCrud('Artiste', 'fas fa-list', Artist::class);
+        yield MenuItem::linkToCrud('Musique', 'fas fa-list', Music::class);
     }
 }

@@ -6,37 +6,41 @@
 <main class="main-alb">
     <div class="head-albm">
         <div class="cover-alb">
-            <img src="{{asset('img/covers/fffff.jpg')}}" alt="album">
+            <img src="{{asset('uploads/covers/')}}{{album.file}}" alt="album">
         </div>
         <div class="info-alb">
-            <h2>OG SAN</h2>
-            <span class="art-tag">Deen Burbigo</span>
+            <h2>{{album.title}}</h2>
+            <span class="art-tag">{{album.artist.name}}</span>
         </div>
     </div>
     <div class="musics-album">
         <h1 class="page-title">
-            Musiques de l'artiste
+            Musiques de l'album
         </h1>
         <div class="musics-list">
+            <audio src="" id="audio"></audio>
+            {%for music in album.musics%}
             <div class="music-item">
                 <div class="music-cover music-cover-list">
-                    <img src="{{asset('img/covers/subzero.jpg')}}" alt="subzero-cover">
+                    <img src="{{asset('uploads/covers/')}}{{music.album.file}}" alt=" subzero-cover">
                 </div>
                 <div class="music-info">
                     <div class="ctn-msc-info">
-                        <span class="music-title title-item">subzero</span>
-                        <a class="music-artist artist-item" href="https://127.0.0.1:8000/artiste/7">Ben Klock</a>
+                        <span class="music-title title-item">{{music.titleM}}</span>
+                        <a class="music-artist artist-item"
+                            href="{{ path('view_artist', { id: music.artist.id }) }}">{{music.artist.name}}</a>
+                        <span class="src-audio">{{asset('uploads/audios/')}}{{music.fileM}}</span>
                     </div>
 
                 </div>
-                <span class="album-name">Crush</span>
+                <span class="album-name">{{music.album.title}}</span>
                 <div class="more-info">
                     <span class="music-rating">4.5</span>
                     <span class="music-duration">3:50</span>
                 </div>
-                <audio src="" id="audio"></audio>
-            </div>
 
+            </div>
+            {%endfor%}
         </div>
     </div>
 </main>
