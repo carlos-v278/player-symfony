@@ -19,8 +19,10 @@
             <a class="cover-album" href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}">
                 <img src="{{asset('uploads/covers/')}}{{album.file}}" alt="cover album"></a>
             <div class="album-info">
-                <a class="album-title" href="">{{album.title}}</a>
-                <a class="artist-title" href="">{{album.artist.name}}</a>
+                <a class="album-title"
+                    href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}">{{album.title}}</a>
+                <a class="artist-title"
+                    href="{{ path('view_artist', {'slug': album.artist.slug, id: album.artist.id }) }}">{{album.artist.name}}</a>
             </div>
         </div>
         {% endfor %}

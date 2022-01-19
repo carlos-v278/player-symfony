@@ -29,10 +29,11 @@
                         <span class="music-title title-item">{{music.titleM}}</span>
                         <span class="music-artist artist-item">{{artist.name}}</span>
                     </div>
-
+                    <span class="src-audio">{{asset('uploads/audios/')}}{{music.fileM}}</span>
                 </div>
-                <a class="album-name" href="{{ path('view_album', { id: music.album.id }) }}">{{music.album.title}}</a>
-                <span class="src-audio">{{asset('uploads/audios/')}}{{{music.fileM}}}</span>
+                <a class="album-name"
+                    href="{{ path('view_album', {'slug': music.album.slug, id: music.album.id }) }}">{{music.album.title}}</a>
+
                 <div class="more-info">
                     <span class="music-rating">4.5</span>
                     <span class="music-duration">3:50</span>
@@ -49,10 +50,11 @@
         </h1>
         {%for album in artist.albums%}
         <div class="album-item">
-            <a class="cover-album" href="{{ path('view_album', { id: album.id }) }}"><img
+            <a class="cover-album" href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}"><img
                     src="{{asset('uploads/covers/')}}{{album.file}}" alt="cover album"></a>
             <div class="album-info">
-                <a class="album-title" href="{{ path('view_album', { id: album.id }) }}">{{album.title}}</a>
+                <a class="album-title"
+                    href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}">{{album.title}}</a>
                 <span class="artist-title">{{album.artist}}</span>
             </div>
         </div>

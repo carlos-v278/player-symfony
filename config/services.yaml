@@ -7,6 +7,7 @@ parameters:
     album_images: /uploads/covers
     artist_images: /uploads/artists
     music_audios: /uploads/audios
+    article_images: /uploads/articles
 services:
     # default configuration for services in *this* file
     _defaults:

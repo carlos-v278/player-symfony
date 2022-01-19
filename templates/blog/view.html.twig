@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<main>
+    <div class="article">
+        <div class="header-article">
+            <div class="article-img"><img src="{{asset('uploads/articles/')}}{{article.file}}" alt="image-article">
+            </div>
+            <div class="info-artcl">
+                <h3 class="title-artc">{{article.title}}</h3>
+                <span class="author-artc">{{article.author}}</span>
+                <span class="date-pub">{{ article.date|date("d/m/Y") }}</span>
+            </div>
+        </div>
+        <div class="content">
+            <p>{{article.content}}</p>
+        </div>
+    </div>
+</main>
+{% endblock %}

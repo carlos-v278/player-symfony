@@ -24,11 +24,17 @@ class ArtistesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/artiste/{id}", name="view_artist")
+     * @Route("/artiste/{id}-{slug}", name="view_artist")
      */
-    public function viewArtiste($id, ArtistRepository $artistRepository,Request $request): Response
+    public function viewArtiste($id, ArtistRepository $artistRepository, Request $request, $slug): Response
     {
         $artist = $artistRepository->find($id);
+        if($artist->getSlug() !== $slug) {
+            return $this->redirectToRoute('view_artist', [
+                'id' => $id,
+                'slug' => $artist->getSlug()
+            ]);
+        }
         return $this->render('artistes/view.html.twig', [
             'currentPage' => '',
             'artist'=> $artist,

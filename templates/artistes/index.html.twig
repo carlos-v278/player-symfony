@@ -16,7 +16,7 @@
         </h1>
         {%for artist in artists%}
         <div class="artist-it">
-            <a href="{{ path('view_artist', { id: artist.id }) }}">
+            <a href="{{ path('view_artist', {'slug': artist.slug, id: artist.id }) }}">
                 <div class="artist-img"><img src="{{asset('uploads/artists/')}}{{artist.fileA}}" alt="imga-artist">
                 </div>
                 <span class="artist-name">{{artist.name}}</span>

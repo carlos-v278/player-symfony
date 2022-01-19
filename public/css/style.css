@@ -206,7 +206,7 @@ a {
 /* ---------------------- main -----------------*/
 
 main {
-    padding: 12vh 10px 0 10px;
+    padding: 12vh 15px 0 15px;
     margin-bottom: 15vh;
 
 }
@@ -430,9 +430,9 @@ main {
     max-width: 1500px;
     width: 100%;
     height: auto;
-    margin: 10px auto;
+    margin: 10px 0;
     grid-template-columns: repeat(auto-fill, 350px);
-    justify-content: center;
+    justify-content: space-between;
     grid-gap: 20px
 }
 
@@ -763,6 +763,139 @@ input {
     color: green;
     display: none !important;
 }
+
+/*------------articles--page ------------*/
+
+.articles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 558px);
+    grid-column-gap: 2px;
+    grid-row-gap: 20px;
+    justify-content: space-between;
+}
+
+.pge-articles {
+    grid-column: 1/-1;
+}
+
+.article-item {
+    display: flex;
+    max-width: 540px;
+    max-height: 180px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.arcl-img {
+    flex: 2;
+}
+
+.arcl-img img {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-article {
+    flex: 3;
+    padding: 5px 10px;
+}
+
+.ttl-article {
+    margin: 5px 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.4rem;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.rsm-article {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.3rem;
+    max-height: 63px;
+    overflow: hidden;
+}
+
+.art-pub-tag {
+    margin: 5px 0;
+}
+
+.author-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.author-name:hover,
+.ttl-article:hover {
+    color: var(--secondary-color);
+}
+
+.date-post {
+    font-weight: 300;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/*------------article--view ------------*/
+.article {
+    padding: 20px 20px;
+}
+
+.header-article {
+    display: flex;
+}
+
+.article-img {
+    min-width: 350px;
+    flex: 1;
+    width: 100%;
+
+}
+
+.article-img img {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.art-content {}
+
+.info-artcl {
+    flex: 2;
+    padding: 30px 30px 0 30px;
+
+}
+
+.title-artc {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.author-artc {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.4);
+    display: block;
+}
+
+.content {
+    padding: 20px 0;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.date-pub {
+    display: block;
+}
+
 
 @media all and (min-width: 968px) {
 

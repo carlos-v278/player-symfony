@@ -23,7 +23,7 @@
                 <div class="ctn-msc-info">
                     <span class="music-title title-item">{{music.titleM}}</span>
                     <a class="music-artist artist-item"
-                        href="{{ path('view_artist', { id: music.artist.id }) }}">{{music.artist.name}}</a>
+                        href="{{ path('view_artist', {'slug': music.artist.slug, id: music.artist.id }) }}">{{music.artist.name}}</a>
                     <span class="src-audio">{{asset('uploads/audios/')}}{{music.fileM}}</span>
                 </div>
 

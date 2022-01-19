@@ -1,7 +1,119 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
+<main>
+    <div class="search-header">
+        <label class="label-search" for="search"><i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="RECHERCHER">
+        </label>
+    </div>
+    <div class="articles-list">
+        <h1 class="page-title pge-articles">
+            Article du moment
+        </h1>
+        {%for article in articles %}
+        <div class="article-item">
+            <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img"><img
+                    src="{{asset('uploads/articles/')}}{{article.file}}" alt="image-article"></a>
+            <div class="info-article">
+                <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img">
+                    <h3 class="ttl-article">{{article.title}}</h3>
+                </a>
+                <div class="rsm-article">{{article.resume}}</div>
+                <div class="art-pub-tag">
+                    <span class="author-name">{{article.author}}</span>
+                    <span class="date-post">{{ article.date|date("d/m/Y") }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="album-list">
+        <h1 class="page-title pge-album-arts">
+            Albums
+        </h1>
+        {% for album in albums %}
+
+        <div class="album-item">
+            <a class="cover-album" href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}">
+                <img src="{{asset('uploads/covers/')}}{{album.file}}" alt="cover album"></a>
+            <div class="album-info">
+                <a class="album-title"
+                    href="{{ path('view_album', {'slug': album.slug, id: album.id }) }}">{{album.title}}</a>
+                <a class="artist-title"
+                    href="{{ path('view_artist', {'slug': album.artist.slug, id: album.artist.id }) }}">{{album.artist.name}}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="artists-list">
+        <h1 class="page-title pge-album-arts">
+            Artists
+        </h1>
+        {%for artist in artists%}
+        <div class="artist-it">
+            <a href="{{ path('view_artist', {'slug': artist.slug, id: artist.id }) }}">
+                <div class="artist-img"><img src="{{asset('uploads/artists/')}}{{artist.fileA}}" alt="imga-artist">
+                </div>
+                <span class="artist-name">{{artist.name}}</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="musics-list">
+        <h1 class="page-title">
+            Nouveautés
+        </h1>
+        <audio src="" id="audio"></audio>
+        {% for music in musics %}
+        <div class="music-item">
+            <div class="music-cover music-cover-list">
+                <img src="{{asset('uploads/covers/')}}{{music.album.file}}" alt="subzero-cover">
+            </div>
+            <div class="music-info">
+                <div class="ctn-msc-info">
+                    <span class="music-title title-item">{{music.titleM}}</span>
+                    <a class="music-artist artist-item"
+                        href="{{ path('view_artist', {'slug': music.artist.slug, id: music.artist.id }) }}">{{music.artist.name}}</a>
+                    <span class="src-audio">{{asset('uploads/audios/')}}{{music.fileM}}</span>
+                </div>
+
+            </div>
+            <a class="album-name"
+                href="{{ path('view_album', {'slug': music.album.slug, id: music.album.id }) }}">{{music.album.title}}</a>
+            <div class="more-info">
+                <span class="music-rating"></span>
+                <span class="music-duration"></span>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="articles-list">
+        <h1 class="page-title pge-articles">
+            Les articles posté dernièrement
+        </h1>
+        {%for article in articles %}
+        <div class="article-item">
+            <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img"><img
+                    src="{{asset('uploads/articles/')}}{{article.file}}" alt="image-article"></a>
+            <div class="info-article">
+                <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img">
+                    <h3 class="ttl-article">{{article.title}}</h3>
+                </a>
+                <div class="rsm-article">{{article.resume}}</div>
+                <div class="art-pub-tag">
+                    <span class="author-name">{{article.author}}</span>
+                    <span class="date-post">{{ article.date|date("d/m/Y") }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{{ include('/_player.html.twig') }}
 
 {% endblock %}

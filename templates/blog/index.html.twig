@@ -1,7 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %}Blog{% endblock %}
 
 {% block body %}
+<main>
+    <div class="search-header">
+        <label class="label-search" for="search"><i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="RECHERCHER">
+        </label>
+    </div>
 
+    <div class="articles-list">
+        <h1 class="page-title pge-articles">
+            Articles
+        </h1>
+        {%for article in articles %}
+        <div class="article-item">
+            <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img"><img
+                    src="{{asset('uploads/articles/')}}{{article.file}}" alt="image-article"></a>
+            <div class="info-article">
+                <a href="{{ path('view_article', {'slug': article.slug, id: article.id }) }}" class="arcl-img">
+                    <h3 class="ttl-article">{{article.title}}</h3>
+                </a>
+                <div class="rsm-article">{{article.resume}}</div>
+                <div class="art-pub-tag">
+                    <span class="author-name">{{article.author}}</span>
+                    <span class="date-post">{{ article.date|date("d/m/Y") }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
 {% endblock %}
